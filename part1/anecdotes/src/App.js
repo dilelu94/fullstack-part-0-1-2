@@ -13,7 +13,6 @@ const App = () => {
   ]
 
   const [selected, setSelected] = useState(0)
-  const [buttonTapped, setButtonTapped] = useState(false)
   const [votes, setVotes] = useState([0, 0, 0, 0, 0, 0, 0])
 
   const handleVote = () => {
@@ -22,23 +21,35 @@ const App = () => {
     setVotes(voteCopies)
   }
 
+  const mostVoted = () => {
+    const highestVote = Math.max.apply(null, votes);
+    const index = votes.indexOf(highestVote);
+    return anecdotes[index]
+  }
+
+  const mostVotedAmount = () => {
+    const highestVote = Math.max.apply(null, votes);
+    return highestVote
+  }
+
+  /* comments alt+shit+a */
   return (
-    <>
-      {!buttonTapped && (
-      <div>Click to see a random anecdote from the field of software engineering</div>
-      )}
-      {buttonTapped && (
-        <div>
-          <p>{anecdotes[selected]}</p>
-          <p>Has {votes[selected]}</p>
-          <Button handleClick={ handleVote } text="Vote" />
-        </div>
-      )}
-              <Button handleClick={() => {
-        setSelected(getRandomInt(7))
-        setButtonTapped(true)
-      }} text="Random Anecdote" />
-    </>
+    <div>
+      <p>{anecdotes[selected]}</p>
+      <p>Has {votes[selected]}</p>
+
+      <Button handleClick={handleVote} text="Vote" />
+      <Button handleClick={() => setSelected(getRandomInt(7))} text="Random Anecdote" />
+
+      <h1>Anecdote with most votes</h1>
+
+      {mostVotedAmount() ? (
+        <>
+          <p>{mostVoted()}</p>
+          <p>Has {mostVotedAmount()} votes</p>
+        </>
+      ) : <p>Start voting to see it!</p>}
+    </div>
   )
 }
 
@@ -47,5 +58,7 @@ const getRandomInt = (max) => {
     Math.floor(Math.random() * max)
   )
 }
+
+
 
 export default App
