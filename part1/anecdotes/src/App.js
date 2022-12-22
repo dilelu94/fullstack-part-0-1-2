@@ -21,15 +21,13 @@ const App = () => {
     setVotes(voteCopies)
   }
 
-  const mostVoted = () => {
-    const highestVote = Math.max.apply(null, votes);
-    const index = votes.indexOf(highestVote);
-    return anecdotes[index]
-  }
-
   const mostVotedAmount = () => {
     const highestVote = Math.max.apply(null, votes);
     return highestVote
+  }
+  const mostVoted = () => {
+    const index = votes.indexOf(mostVotedAmount());
+    return anecdotes[index]
   }
 
   /* comments alt+shit+a */
