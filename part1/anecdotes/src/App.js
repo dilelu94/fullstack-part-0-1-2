@@ -13,12 +13,32 @@ const App = () => {
   ]
 
   const [selected, setSelected] = useState(0)
+  const [buttonTapped, setButtonTapped] = useState(false)
+  const [votes, setVotes] = useState([0, 0, 0, 0, 0, 0, 0])
+
+  const handleVote = () => {
+    const voteCopies = [...votes]
+    voteCopies[selected] += 1
+    setVotes(voteCopies)
+  }
 
   return (
-    <div>
-      {anecdotes[selected]}
-      <Button handleClick={() => setSelected(getRandomInt(7))} text="Random Anecdote" />
-    </div>
+    <>
+      {!buttonTapped && (
+      <div>Click to see a random anecdote from the field of software engineering</div>
+      )}
+      {buttonTapped && (
+        <div>
+          <p>{anecdotes[selected]}</p>
+          <p>Has {votes[selected]}</p>
+          <Button handleClick={ handleVote } text="Vote" />
+        </div>
+      )}
+              <Button handleClick={() => {
+        setSelected(getRandomInt(7))
+        setButtonTapped(true)
+      }} text="Random Anecdote" />
+    </>
   )
 }
 
