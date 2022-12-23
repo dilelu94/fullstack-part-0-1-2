@@ -1,4 +1,6 @@
 import Courses from './Components/Courses'
+import Content from './Components/Content'
+import TotalExercises from './Components/TotalExercises'
 
 const App = ({ courses }) => {
 
@@ -8,11 +10,12 @@ const App = ({ courses }) => {
   /* es una reverenda mierda esto, 4 horas para mostrar una lista, por 
   que no me explicaron que el objeto tenia una lista adentro??? */
 
-  /* hacer que ul sea componente Content */
 
   return (
     <div>
       <Courses courses={courses} />
+      <Content courses={courses} />
+      <TotalExercises courses={courses} />
     </div>
   )
 }
