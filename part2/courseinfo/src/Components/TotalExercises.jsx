@@ -1,7 +1,11 @@
 const TotalExercises = ({ courses }) => {
-    let totalExercises = 0
+    const initialValue = 0
 
-    courses.parts.forEach((partList) => totalExercises += partList.exercises)
+    const totalExercises = courses.parts.reduce(
+        (accumulator, currentValue) => accumulator + currentValue.exercises,
+        initialValue
+    )   /* currentValue".exercises" es para cuando la poronga esta 
+        dentro de un Object */
 
     return (
         <div>
