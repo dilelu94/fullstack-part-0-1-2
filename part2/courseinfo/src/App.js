@@ -1,6 +1,4 @@
 import Courses from './Components/Courses'
-/* import Content from './Components/Content' */
-import TotalExercises from './Components/TotalExercises'
 
 const App = ({ coursesArray }) => {
 
@@ -11,9 +9,7 @@ const App = ({ coursesArray }) => {
   que no me explicaron que el objeto tenia una lista adentro??? */
 
   return (
-    <div>
-      <Courses coursesArray={coursesArray} />
-    </div>
+    <Courses coursesArray={coursesArray} />
   )
 
 }

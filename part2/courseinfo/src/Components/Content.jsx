@@ -1,13 +1,11 @@
 const Content = ({ courses }) => {
     return (
         <>
-            <ul>
-                {courses.parts.map(part =>
-                    <li key={part.id}>
-                        {part.name} {part.exercises}
-                    </li>
-                )} 
-            </ul>
+            {courses.parts.map(part =>
+                <p key={part.id}>
+                    {part.name} {part.exercises}
+                </p>
+            )}
         </>
     )
 }

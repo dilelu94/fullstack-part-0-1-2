@@ -8,9 +8,9 @@ const TotalExercises = ({ courses }) => {
         dentro de un Object */
 
     return (
-        <div>
-            <p>total of {totalExercises} exercises</p>
-        </div>
+        <h3 key={courses.parts.map((part) => part.id)}>
+            total of {totalExercises} exercises
+        </h3>
     )
 }
 
