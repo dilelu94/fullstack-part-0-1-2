@@ -1,9 +1,20 @@
-const Courses = ({ courses }) => {
-    return (
-        <>
-            <h1>{courses.name}</h1>
-        </>
-    )
+import Content from './Content'
+import TotalExercises from './TotalExercises'
+
+const Courses = ({ coursesArray }) => {
+  return (
+    <div>
+      <h1>Web development curriculum</h1>
+      {coursesArray.map(item =>
+        <div> <h2 key={item.id}>
+          {item.name}
+        </h2>
+        <Content courses={item} />
+        <TotalExercises courses={item} />
+        </div>
+      )}
+    </div>
+  )
 }
-/* hacer que 'ul' sea un componente 'Content' */
+
 export default Courses
