@@ -12,7 +12,7 @@ const App = ({ notes }) => {
       <ul>
         {notes.map(note => 
           <li key={note.id}>
-            {note.content}
+            {note.content} {/* {console.log(`texto: ${note.id}, ${note.content}`)} */}
           </li>
         )}
       </ul>
@@ -21,13 +21,3 @@ const App = ({ notes }) => {
 }
 
 export default App
-
-/* 
-<ul>
-  {notes.map((note, i) => 
-    <li key={i}>
-      {note.content}
-    </li>
-  )}
-</ul> 
-*/
