@@ -18,7 +18,7 @@ const App = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    if (persons.find((person) => person.name === newName)) {
+    if (persons.find((person) => person.name === newName && person.number === newNumber)) {
       alert(`${newName} is already in the phonebook`)
       setNewName('')
       return
@@ -34,11 +34,11 @@ const App = () => {
   }
 
   const handleNumberChange = (event) => {
-    setNewNumber(event.target.value);
+    setNewNumber(event.target.value)
   }
 
   const handleSearchChange = (event) => {
-    setSearchQuery(event.target.value);
+    setSearchQuery(event.target.value)
   }
 
   const filteredPersons = persons.filter((person) =>
@@ -48,7 +48,9 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <Filter valueFilter={searchQuery} onChangeFilter={handleSearchChange}/>
+      <Filter
+        valueFilter={searchQuery} onChangeFilter={handleSearchChange}
+      />
       <form onSubmit={handleSubmit}>
         <SubmitForm
           onChangeName={handleNameChange} valueName={newName}
@@ -56,7 +58,9 @@ const App = () => {
         />
       </form>
       <h2>Numbers</h2>
-      <PersonList persons={filteredPersons} />
+      <PersonList
+        persons={filteredPersons}
+      />
     </div>
   )
 }
