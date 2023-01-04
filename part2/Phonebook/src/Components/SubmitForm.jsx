@@ -7,12 +7,11 @@ const SubmitForm = (props) => {
             <div>
                 number: <input onChange={props.onChangeNumber} value={props.valueNumber} />
             </div>
-
             <div>
                 <button type="submit">add</button>
             </div>
         </>
-    );
-};
+    )
+}
 
 export default SubmitForm
