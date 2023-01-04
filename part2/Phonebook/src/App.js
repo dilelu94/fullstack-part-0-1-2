@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import SubmitForm from './Components/SubmitForm';
 import PersonList from './Components/PersonList';
+import Filter from './Components/Filter';
 
 const App = () => {
   const [persons, setPersons] = useState([
@@ -47,7 +48,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      filter shown with: <input value={searchQuery} onChange={handleSearchChange} />
+      <Filter valueFilter={searchQuery} onChangeFilter={handleSearchChange}/>
       <form onSubmit={handleSubmit}>
         <SubmitForm
           onChangeName={handleNameChange} valueName={newName}
