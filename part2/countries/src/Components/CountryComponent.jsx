@@ -1,6 +1,6 @@
 const CountryComponent = ({ countryArray, setSearchToCountry }) => {
     return (
-            <li>
+            <li key={countryArray.name.common}>
                 {countryArray.name.common}
                 <button onClick={() => setSearchToCountry(countryArray.name.common)}>
                     Show
