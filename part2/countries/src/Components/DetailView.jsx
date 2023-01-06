@@ -3,7 +3,7 @@ import axios from 'axios'
 import Filter from "./Filter"
 
 const DetailView = (props) => {
-    const { filteredCountry, searchQuery, handleSearchChange } = props;
+    const { filteredCountry, searchQuery, handleSearchChange } = props
     const [weather, setWeather] = useState([])
 
     const hook = () => {
