@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import CountryComponent from "./Components/CountryComponent"
 import Filter from './Components/Filter'
+import DetailView from './Components/DetailView'
 
 const App = () => {
   const [countries, setCountries] = useState([])
@@ -21,46 +22,26 @@ const App = () => {
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value)
   }
-  const filteredCounty = countries.filter((country) =>
+  const filteredCountry = countries.filter((country) =>
     country.name.common.toLowerCase().includes(searchQuery.toLowerCase())
   )
 
-  if (filteredCounty.length === 1) {
+  if (filteredCountry.length === 1) {
     return (
-      <div>
-        <h1>Countries</h1>
-        <Filter
-          valueFilter={searchQuery} onChangeFilter={handleSearchChange} countryArray={filteredCounty}
-        />
-        {filteredCounty.map(map =>
-          <>
-            <h2><CountryComponent key={map.flag} countryArray={map} /></h2>
-              <p key={map.capital}>capital: {map.capital}</p>
-              <p key={map.area}>area: {map.area}</p>
-              <p key={map.region}>region: {map.region}</p>
-              <p key={map.subregion}>subregion: {map.subregion}</p>
-              <p key={map.population}>population: {map.population}</p>
-            <h4>languages:</h4>
-            <ul>
-              {Object.values(map.languages).map(language =>
-                <li key={language}>{language}</li>
-              )}
-            </ul>
-            <img src={map.flags.svg} alt={`Flag of ${map.name.common}`} 
-            style={{ width: '150px', height: '150px' }} />
-          </>
-        )}
-      </div>
+      <DetailView filteredCountry={filteredCountry}
+        searchQuery={searchQuery}
+        handleSearchChange={handleSearchChange}
+      />
     )
-  } else if (filteredCounty.length <= 10) {
+  } else if (filteredCountry.length <= 10) {
     return (
       <div>
         <h1>Countries</h1>
         <Filter
-          valueFilter={searchQuery} onChangeFilter={handleSearchChange} countryArray={filteredCounty}
+          valueFilter={searchQuery} onChangeFilter={handleSearchChange} countryArray={filteredCountry}
         />
         <ul>
-          {filteredCounty.map(map =>
+          {filteredCountry.map(map =>
             <CountryComponent key={map.flag} countryArray={map} />
           )}
         </ul>
@@ -71,7 +52,7 @@ const App = () => {
       <div>
         <h1>Countries</h1>
         <Filter
-          valueFilter={searchQuery} onChangeFilter={handleSearchChange} countryArray={filteredCounty}
+          valueFilter={searchQuery} onChangeFilter={handleSearchChange} countryArray={filteredCountry}
         />
         <p>Too many matches, specify another filter</p>
       </div>
