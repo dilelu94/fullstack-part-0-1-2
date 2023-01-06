@@ -1,5 +1,4 @@
 import Filter from "./Filter"
-import CountryComponent from "./CountryComponent"
 
 const DetailView = (props) => {
     const { filteredCountry, searchQuery, handleSearchChange } = props;
@@ -11,7 +10,7 @@ const DetailView = (props) => {
             />
             {filteredCountry.map(map =>
                 <>
-                    <h2><CountryComponent key={map.flag} countryArray={map} /></h2>
+                    <h2>{map.name.common}</h2>
                     <p key={map.capital}>capital: {map.capital}</p>
                     <p key={map.area}>area: {map.area}</p>
                     <p key={map.region}>region: {map.region}</p>

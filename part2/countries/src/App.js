@@ -26,6 +26,10 @@ const App = () => {
     country.name.common.toLowerCase().includes(searchQuery.toLowerCase())
   )
 
+  const setSearchToCountry = (countryName) => {
+    setSearchQuery(countryName)
+  }
+
   if (filteredCountry.length === 1) {
     return (
       <DetailView filteredCountry={filteredCountry}
@@ -42,7 +46,11 @@ const App = () => {
         />
         <ul>
           {filteredCountry.map(map =>
-            <CountryComponent key={map.flag} countryArray={map} />
+            <CountryComponent 
+              key={map.flag} 
+              countryArray={map} 
+              setSearchToCountry={setSearchToCountry}
+            />
           )}
         </ul>
       </div>

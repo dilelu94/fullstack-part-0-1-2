@@ -1,7 +1,13 @@
-const CountryComponent = ({ countryArray }) => {
+const CountryComponent = ({ countryArray, setSearchToCountry }) => {
     return (
-        <p key={countryArray.flag}>{countryArray.name.common}</p>
+        <li>
+            {countryArray.name.common}
+            <button onClick={() => setSearchToCountry(countryArray.name.common)}>
+                Show
+            </button>
+        </li>
     )
 }
+
 
 export default CountryComponent
