@@ -39,6 +39,7 @@ const App = () => {
               <p key={map.area}>area: {map.area}</p>
               <p key={map.region}>region: {map.region}</p>
               <p key={map.subregion}>subregion: {map.subregion}</p>
+              <p key={map.population}>population: {map.population}</p>
             <h4>languages:</h4>
             <ul>
               {Object.values(map.languages).map(language =>
