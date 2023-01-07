@@ -13,9 +13,11 @@ const App = () => {
       .get('https://restcountries.com/v3.1/all')
       .then(response => {
         setCountries(response.data)
+        console.log(response.data)
       })
   }
   useEffect(hook, [])
+
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value)
@@ -67,5 +69,3 @@ const App = () => {
 }
 
 export default App
-
-/* ($env:REACT_APP_API_KEY="51a4aea1fe95cd704d805df447cb823a") -and (npm start)*/

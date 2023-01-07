@@ -25,3 +25,5 @@ const Button = (props) => (
 )
 //hola mati
 export default App
+
+/* ($env:REACT_APP_API_KEY="51a4aea1fe95cd704d805df447cb823a") -and (npm start)*/
