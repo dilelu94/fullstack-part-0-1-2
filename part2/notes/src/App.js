@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import Note from "./Components/Note"
+import noteService from './services/notes'
 
 /* npx json-server --port 3001 --watch db.json */
 
@@ -8,8 +9,18 @@ const App = () => {
   const [notes, setNotes] = useState([])
   const [newNote, setNewNote] = useState(
     'a new note...'
-  ) 
+  )
   const [showAll, setShowAll] = useState(true)
+
+  const toggleImportanceOf = id => {
+    const url = `http://localhost:3001/notes/${id}`
+    const note = notes.find(n => n.id === id)
+    const changedNote = { ...note, important: !note.important }
+
+    axios.put(url, changedNote).then(response => {
+      setNotes(notes.map(n => n.id !== id ? n : response.data))
+    })
+  }
 
   const hook = () => {
     console.log('effect')
@@ -20,9 +31,9 @@ const App = () => {
         setNotes(response.data)
       })
   }
-  
+
   useEffect(hook, [])
-/*   console.log('render', notes.length, 'notes') */
+  /*   console.log('render', notes.length, 'notes') */
 
   const handleNoteChange = (event) => {
     console.log(event.target.value)
@@ -35,11 +46,14 @@ const App = () => {
       content: newNote,
       date: new Date().toISOString(),
       important: Math.random() < 0.5,
-      id: notes.length + 1,
     }
 
-    setNotes(notes.concat(noteObject))
-    setNewNote('')
+    axios
+      .post('http://localhost:3001/notes', noteObject)
+      .then(response => {
+        setNotes(notes.concat(response.data))
+        setNewNote('')
+      })
   }
 
   const notesToShow = showAll === true
@@ -55,14 +69,18 @@ const App = () => {
         </button>
       </div>
       <ul>
-        {notesToShow.map(note => 
-          <Note key={note.id} note={note} />
+        {notesToShow.map(note =>
+          <Note
+            key={note.id}
+            note={note}
+            toggleImportance={() => toggleImportanceOf(note.id)}
+          />
         )}
       </ul>
       <form onSubmit={addNote}>
         <input
-        value={newNote}
-        onChange={handleNoteChange}
+          value={newNote}
+          onChange={handleNoteChange}
         />
         <button type="submit">save</button>
       </form>
