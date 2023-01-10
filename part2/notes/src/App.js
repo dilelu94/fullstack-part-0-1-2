@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
 import Note from "./Components/Note"
 import noteService from './services/notes'
 
@@ -48,7 +47,6 @@ const App = () => {
   }
 
   const handleNoteChange = (event) => {
-    console.log(event.target.value)
     setNewNote(event.target.value) /* cuadro de texto */
   }
 
