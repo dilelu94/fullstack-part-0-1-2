@@ -13,7 +13,7 @@ const App = () => {
     'add number...'
     )
   const [searchQuery, setSearchQuery] = useState(
-    'search for name...'
+    ''
     )
 
   useEffect(() => {
