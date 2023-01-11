@@ -8,13 +8,13 @@ const App = () => {
   const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState(
     'add name...'
-    )
+  )
   const [newNumber, setNewNumber] = useState(
     'add number...'
-    )
+  )
   const [searchQuery, setSearchQuery] = useState(
     ''
-    )
+  )
 
   useEffect(() => {
     personService
@@ -26,23 +26,34 @@ const App = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    if (persons.find((person) => person.name === newName && person.number === newNumber)) {
-      alert(`${newName} is already in the phonebook`)
-      setNewName('')
-      return
+    const personToUpdate = persons.find(person => person.name === newName)
+    if (personToUpdate) {
+      if (window.confirm(`${newName} is already in the phonebook, replace the old number with a new one?`)) {
+        const changedNumber = { ...personToUpdate, number: newNumber }
+        personService
+          .update(personToUpdate.id, changedNumber).then(returnedPerson => {
+            setPersons(persons.map(person => person.id !== personToUpdate.id ? person : returnedPerson))
+            return
+          })
+      } else {
+        setNewName('add name...')
+        return
+      }
+    } else {
+
+      event.preventDefault()
+      const personObject = {
+        name: newName,
+        number: newNumber,
+      }
+      personService
+        .create(personObject)
+        .then(returnedPerson => {
+          setPersons(persons.concat(returnedPerson))
+          setNewName('')
+          setNewNumber('')
+        })
     }
-    event.preventDefault()
-    const personObject = {
-      name: newName,
-      number: newNumber,
-    }
-    personService
-      .create(personObject)
-      .then(returnedPerson => {
-        setPersons(persons.concat(returnedPerson))
-        setNewName('')
-        setNewNumber('')
-      })
   }
 
   const handleNameChange = (event) => {
