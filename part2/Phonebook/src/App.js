@@ -36,7 +36,6 @@ const App = () => {
       name: newName,
       number: newNumber,
     }
-
     personService
       .create(personObject)
       .then(returnedPerson => {
