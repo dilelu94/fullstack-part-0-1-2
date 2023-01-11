@@ -8,16 +8,18 @@ const PersonList = ({ persons, setPersons }) => {
                     {person.name}, {person.number}
                     <button onClick={(event) => {
                         event.preventDefault()
-                        personService.deletePerson(person.id)
-                            .then(() => {
-                                setPersons(persons.filter(p => p.id !== person.id))
-                            })
-                            .catch(error => {
-                                alert(
-                                    `the note '${person.name}' was already deleted from server`
-                                )
-                                setPersons(persons.filter(p => p.id !== person.id))
-                            })
+                        if (window.confirm(`Delete ${person.name} ?`)) {
+                            personService.deletePerson(person.id)
+                                .then(() => {
+                                    setPersons(persons.filter(p => p.id !== person.id))
+                                })
+                                .catch(error => {
+                                    alert(
+                                        `the note '${person.name}' was already deleted from server`
+                                    )
+                                    setPersons(persons.filter(p => p.id !== person.id))
+                                })
+                        }
                     }}>Delete</button>
                 </div>
             ))}
