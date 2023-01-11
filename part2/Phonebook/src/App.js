@@ -76,6 +76,7 @@ const App = () => {
       <h2>Numbers</h2>
       <PersonList
         persons={filteredPersons}
+        setPersons={setPersons}
       />
     </div>
   )
