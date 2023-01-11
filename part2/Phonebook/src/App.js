@@ -1,24 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios'
 import SubmitForm from './Components/SubmitForm';
 import PersonList from './Components/PersonList';
 import Filter from './Components/Filter';
+import personService from './services/person';
 
 const App = () => {
   const [persons, setPersons] = useState([])
-
-  const [newName, setNewName] = useState('')
-  const [newNumber, setNewNumber] = useState('')
-  const [newId, setNewId] = useState(5)
-  const [searchQuery, setSearchQuery] = useState('')
+  const [newName, setNewName] = useState(
+    'add name...'
+    )
+  const [newNumber, setNewNumber] = useState(
+    'add number...'
+    )
+  const [searchQuery, setSearchQuery] = useState(
+    'search for name...'
+    )
 
   useEffect(() => {
-    console.log('effect')
-    axios
-      .get('http://localhost:3001/persons')
-      .then(response => {
-        console.log('promise fulfilled')
-        setPersons(response.data)
+    personService
+      .getAll()
+      .then(initialPersons => {
+        setPersons(initialPersons)
       })
   }, [])
 
@@ -29,10 +31,19 @@ const App = () => {
       setNewName('')
       return
     }
-    setPersons([...persons, { name: newName, number: newNumber, id: newId }]);
-    setNewName('')
-    setNewNumber('')
-    setNewId(newId + 1)
+    event.preventDefault()
+    const personObject = {
+      name: newName,
+      number: newNumber,
+    }
+
+    personService
+      .create(personObject)
+      .then(returnedPerson => {
+        setPersons(persons.concat(returnedPerson))
+        setNewName('')
+        setNewNumber('')
+      })
   }
 
   const handleNameChange = (event) => {
