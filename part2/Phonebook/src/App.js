@@ -3,6 +3,7 @@ import SubmitForm from './Components/SubmitForm';
 import PersonList from './Components/PersonList';
 import Filter from './Components/Filter';
 import personService from './services/person';
+import Notification from './Components/Notification';
 
 /* npx json-server --port 3001 --watch db.json */
 
@@ -17,6 +18,7 @@ const App = () => {
   const [searchQuery, setSearchQuery] = useState(
     ''
   )
+  const [successMessage, setSuccessMessage] = useState(null)
 
   useEffect(() => {
     personService
@@ -54,6 +56,12 @@ const App = () => {
           setPersons(persons.concat(returnedPerson))
           setNewName('')
           setNewNumber('')
+          setSuccessMessage(
+            `Added ${returnedPerson.name}`
+          )
+          setTimeout(() => {
+            setSuccessMessage(null)
+          }, 5000)
         })
     }
   }
@@ -77,6 +85,7 @@ const App = () => {
   return (
     <div>
       <h1>Phonebook</h1>
+      <Notification message={successMessage} />
       <Filter
         valueFilter={searchQuery} onChangeFilter={handleSearchChange}
       />
