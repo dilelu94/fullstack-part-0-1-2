@@ -4,6 +4,8 @@ import PersonList from './Components/PersonList';
 import Filter from './Components/Filter';
 import personService from './services/person';
 
+/* npx json-server --port 3001 --watch db.json */
+
 const App = () => {
   const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState(
