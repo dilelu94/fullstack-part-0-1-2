@@ -1,6 +1,6 @@
 import personService from '../services/person';
 
-const PersonList = ({ persons, setPersons }) => {
+const PersonList = ({ persons, setPersons, setErrorMessage }) => {
     return (
         <div>
             {persons.map((person) => (
@@ -14,10 +14,12 @@ const PersonList = ({ persons, setPersons }) => {
                                     setPersons(persons.filter(p => p.id !== person.id))
                                 })
                                 .catch(error => {
-                                    alert(
-                                        `the note '${person.name}' was already deleted from server`
+                                    setErrorMessage(
+                                        `Information of '${person.name}' has already been removed from server`
                                     )
-                                    setPersons(persons.filter(p => p.id !== person.id))
+                                    setTimeout(() => {
+                                        setErrorMessage(null)
+                                    }, 5000)
                                 })
                         }
                     }}>Delete</button>

@@ -3,7 +3,8 @@ import SubmitForm from './Components/SubmitForm';
 import PersonList from './Components/PersonList';
 import Filter from './Components/Filter';
 import personService from './services/person';
-import Notification from './Components/Notification';
+import GoodNotification from './Components/GoodNotification';
+import ErrorNotification from './Components/ErrorNotification';
 
 /* npx json-server --port 3001 --watch db.json */
 
@@ -19,6 +20,7 @@ const App = () => {
     ''
   )
   const [successMessage, setSuccessMessage] = useState(null)
+  const [errorMessage, setErrorMessage] = useState(null)
 
   useEffect(() => {
     personService
@@ -85,7 +87,8 @@ const App = () => {
   return (
     <div>
       <h1>Phonebook</h1>
-      <Notification message={successMessage} />
+      <GoodNotification message={successMessage} />
+      <ErrorNotification message={errorMessage} />
       <Filter
         valueFilter={searchQuery} onChangeFilter={handleSearchChange}
       />
@@ -99,6 +102,7 @@ const App = () => {
       <PersonList
         persons={filteredPersons}
         setPersons={setPersons}
+        setErrorMessage={setErrorMessage}
       />
     </div>
   )
