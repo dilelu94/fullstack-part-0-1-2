@@ -92,13 +92,14 @@ const App = () => {
       <Filter
         valueFilter={searchQuery} onChangeFilter={handleSearchChange}
       />
+      <h2>Add a new</h2>
       <form onSubmit={handleSubmit}>
         <SubmitForm
           onChangeName={handleNameChange} valueName={newName}
           onChangeNumber={handleNumberChange} valueNumber={newNumber}
         />
       </form>
-      <h2>Numbers</h2>
+      <h2>Numbers:</h2>
       <PersonList
         persons={filteredPersons}
         setPersons={setPersons}

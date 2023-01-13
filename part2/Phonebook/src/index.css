@@ -4,11 +4,6 @@ h1 {
     font-size: 40px;
 }
 
-h2 {
-    color: black;
-    font-style:  italic;
-}
-
 .success {
     color: green;
     background: lightgrey;
