@@ -9,6 +9,8 @@ const { response, request } = require('express')
 const express = require('express')
 const app = express()
 
+app.use(express.json())
+
 let notes = [
     {
         id: 1,
@@ -42,11 +44,18 @@ app.get('/api/notes/:id', (request, response) => {
 })
 
 /* Deleting resources */
-app. delete('/api/notes/:id', (request, response) => {
+app.delete('/api/notes/:id', (request, response) => {
     const id = Number(request.params.id)
     notes = notes.filter(n => n.id !== id)
 
     response.status(204).end()
+})
+
+/* Receiving data */
+app.post('/api/notes', (request, response) => {
+    const note = request.body
+    console.log(note)
+    response.json(note)
 })
 
 app.get('/', (request, response) => {
