@@ -5,7 +5,7 @@ POST http://localhost:3001/api/notes/
 content-type: application/json
 
 {
-    "Content": "Vs code REST is",
+    "content": "Vs code REST is...",
     "important": true
 }
 
