@@ -41,6 +41,13 @@ app.get('/api/notes/:id', (request, response) => {
     }
 })
 
+/* Deleting resources */
+app. delete('/api/notes/:id', (request, response) => {
+    const id = Number(request.params.id)
+    notes = notes.filter(n => n.id !== id)
+
+    response.status(204).end()
+})
 
 app.get('/', (request, response) => {
     response.send('<h1>Hello World!</h1>')
