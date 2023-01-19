@@ -86,7 +86,7 @@ const App = () => {
 
   return (
     <div>
-      <h1>Phonsebook</h1>
+      <h1>Phonebook</h1>
       <GoodNotification message={successMessage} />
       <ErrorNotification message={errorMessage} />
       <Filter 
