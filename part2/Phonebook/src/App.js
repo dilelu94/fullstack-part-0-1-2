@@ -61,9 +61,8 @@ const App = () => {
           }, 5000)
         })
         .catch(error => {
-          console.log(error)
           setErrorMessage(
-            `AAAAAAAAAAAA😭😭😭😭AAAAAAAAAAAAA😭😭😭😭: ${error.message}`
+            `${error.response.data.error} 😭`
           )
           setTimeout(() => {
             console.log('catchError')
@@ -92,8 +91,8 @@ const App = () => {
   return (
     <div>
       <h1>Phonebook</h1>
-      <GoodNotification message={successMessage} />
-      <ErrorNotification message={errorMessage} />
+      { successMessage ? <GoodNotification message={successMessage} /> : null}
+      { errorMessage ? <ErrorNotification message={errorMessage} /> : null}
       <Filter
         valueFilter={searchQuery} onChangeFilter={handleSearchChange}
       />

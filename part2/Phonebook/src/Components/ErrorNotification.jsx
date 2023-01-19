@@ -1,5 +1,5 @@
 const ErrorNotification = ({ message }) => {
-    if (message === null) {
+    if (!message) {
         console.log('errorNotification')
         return null
     }
