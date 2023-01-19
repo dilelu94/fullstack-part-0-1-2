@@ -86,10 +86,10 @@ const App = () => {
 
   return (
     <div>
-      <h1>Phonebook</h1>
+      <h1>Phonsebook</h1>
       <GoodNotification message={successMessage} />
       <ErrorNotification message={errorMessage} />
-      <Filter
+      <Filter 
         valueFilter={searchQuery} onChangeFilter={handleSearchChange}
       />
       <h2>Add a new</h2>

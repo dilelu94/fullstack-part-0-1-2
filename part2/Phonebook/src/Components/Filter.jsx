@@ -1,7 +1,7 @@
 const Filter = (props) => {
     return (
         <>
-            filter shown with: <input value={props.valueFilter} onChange={props.onChangeFilter} />
+            filter shown with: <input placeholder="Search for a name" value={props.valueFilter} onChange={props.onChangeFilter} />
         </>
     )
 }
