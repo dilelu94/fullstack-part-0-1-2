@@ -10,15 +10,9 @@ import ErrorNotification from './Components/ErrorNotification';
 
 const App = () => {
   const [persons, setPersons] = useState([])
-  const [newName, setNewName] = useState(
-    'add name...'
-  )
-  const [newNumber, setNewNumber] = useState(
-    'add number...'
-  )
-  const [searchQuery, setSearchQuery] = useState(
-    ''
-  )
+  const [newName, setNewName] = useState('')
+  const [newNumber, setNewNumber] = useState('')
+  const [searchQuery, setSearchQuery] = useState('')
   const [successMessage, setSuccessMessage] = useState(null)
   const [errorMessage, setErrorMessage] = useState(null)
 

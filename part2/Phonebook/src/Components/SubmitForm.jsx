@@ -2,10 +2,10 @@ const SubmitForm = (props) => {
     return (
         <>
             <div>
-                name: <input onChange={props.onChangeName} value={props.valueName} />
+                name: <input placeholder="*add a name..." onChange={props.onChangeName} value={props.valueName} />
             </div>
             <div>
-                number: <input onChange={props.onChangeNumber} value={props.valueNumber} />
+                number: <input placeholder="add a number..." onChange={props.onChangeNumber} value={props.valueNumber} />
             </div>
             <div>
                 <button type="submit">add</button>
