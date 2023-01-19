@@ -18,6 +18,7 @@ const PersonList = ({ persons, setPersons, setErrorMessage }) => {
                                         `Information of '${person.name}' has already been removed from server`
                                     )
                                     setTimeout(() => {
+                                        console.log('personListTimeout')
                                         setErrorMessage(null)
                                     }, 5000)
                                 })

@@ -56,7 +56,18 @@ const App = () => {
             `Added ${returnedPerson.name}`
           )
           setTimeout(() => {
+            console.log('setSuccessMessage')
             setSuccessMessage(null)
+          }, 5000)
+        })
+        .catch(error => {
+          console.log(error)
+          setErrorMessage(
+            `AAAAAAAAAAAA😭😭😭😭AAAAAAAAAAAAA😭😭😭😭: ${error.message}`
+          )
+          setTimeout(() => {
+            console.log('catchError')
+            setErrorMessage(null)
           }, 5000)
         })
     }
@@ -83,7 +94,7 @@ const App = () => {
       <h1>Phonebook</h1>
       <GoodNotification message={successMessage} />
       <ErrorNotification message={errorMessage} />
-      <Filter 
+      <Filter
         valueFilter={searchQuery} onChangeFilter={handleSearchChange}
       />
       <h2>Add a new</h2>

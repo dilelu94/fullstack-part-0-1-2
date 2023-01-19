@@ -1,5 +1,6 @@
 const GoodNotification = ({ message }) => {
     if (message === null) {
+        console.log('goodNotification')
         return null
     }
 
