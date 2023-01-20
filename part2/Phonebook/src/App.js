@@ -35,6 +35,15 @@ const App = () => {
             setPersons(persons.map(person => person.id !== personToUpdate.id ? person : returnedPerson))
             return
           })
+          .catch(error => {
+            setErrorMessage(
+              `${error.response.data.error} 😭`
+            )
+            setTimeout(() => {
+              console.log('catchError')
+              setErrorMessage(null)
+            }, 5000)
+          })
       } else {
         setNewName('')
         return
