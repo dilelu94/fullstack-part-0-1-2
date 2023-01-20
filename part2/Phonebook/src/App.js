@@ -36,7 +36,7 @@ const App = () => {
             return
           })
       } else {
-        setNewName('add name...')
+        setNewName('')
         return
       }
     } else {
