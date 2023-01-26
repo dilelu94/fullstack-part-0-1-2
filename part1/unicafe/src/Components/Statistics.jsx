@@ -16,6 +16,7 @@ const Statistics = ({ good, neutral, bad }) => {
     <div>
       <h1>statistics</h1>
       <table>
+        <tbody>
         <tr>
           <td> <StatisticLine text="good" /> </td>
           <td> <StatisticLine value={good} /> </td>
@@ -38,8 +39,9 @@ const Statistics = ({ good, neutral, bad }) => {
         </tr>
         <tr>
           <td> <StatisticLine text="positive" /> </td> 
-          <td> <StatisticLine value={positiveFeedback} /> </td> <p>%</p>
+          <td> <StatisticLine value={positiveFeedback} /> </td><td>%</td>
         </tr>
+        </tbody>
       </table>
     </div>
   )

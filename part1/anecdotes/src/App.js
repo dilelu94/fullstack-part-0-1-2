@@ -12,51 +12,41 @@ const App = () => {
     'Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when diagnosing patients.'
   ]
 
-  const [selected, setSelected] = useState(0)
+  const [selectedIndex, setSelectedIndex] = useState(0)
   const [votes, setVotes] = useState([0, 0, 0, 0, 0, 0, 0])
 
-  const handleVote = () => {
+  const handleVoteClick = () => {
     const voteCopies = [...votes]
-    voteCopies[selected] += 1
+    voteCopies[selectedIndex] += 1
     setVotes(voteCopies)
   }
 
-  const mostVotedAmount = () => {
-    const highestVote = Math.max.apply(null, votes);
-    return highestVote
-  }
-  const mostVoted = () => {
-    const index = votes.indexOf(mostVotedAmount());
-    return anecdotes[index]
-  }
+  const handleRandomClick = () => setSelectedIndex(getRandomInt(7))
+  const getRandomInt = (max) => Math.floor(Math.random() * max)
+  
+  const highestVoteAmount = Math.max(...votes)
 
-  /* comments alt+shit+a */
+  const mostVotedIndex = votes.indexOf(highestVoteAmount);
+  const mostVotedAnecdote = anecdotes[mostVotedIndex]
+  
   return (
     <div>
-      <p>{anecdotes[selected]}</p>
-      <p>Has {votes[selected]}</p>
+      <p>{anecdotes[selectedIndex]}</p>
+      <p>Has {votes[selectedIndex]}</p>
 
-      <Button handleClick={handleVote} text="Vote" />
-      <Button handleClick={() => setSelected(getRandomInt(7))} text="Random Anecdote" />
+      <Button handleClick={handleVoteClick} text="Vote" />
+      <Button handleClick={handleRandomClick} text="Random Anecdote" />
 
       <h1>Anecdote with most votes</h1>
 
-      {mostVotedAmount() ? (
+      {highestVoteAmount ? (
         <>
-          <p>{mostVoted()}</p>
-          <p>Has {mostVotedAmount()} votes</p>
+          <p>{mostVotedAnecdote}</p>
+          <p>Has {highestVoteAmount} votes</p>
         </>
       ) : <p>Start voting to see it!</p>}
     </div>
   )
 }
-
-const getRandomInt = (max) => {
-  return (
-    Math.floor(Math.random() * max)
-  )
-}
-
-
 
 export default App
