@@ -1,4 +1,5 @@
 import Content from './Content'
+import Header from './Header'
 import TotalExercises from './TotalExercises'
 
 const Courses = ({ coursesArray }) => {
@@ -7,9 +8,7 @@ const Courses = ({ coursesArray }) => {
       <h1>Web development curriculum</h1>
       {coursesArray.map(item =>
         <div key={item.id}>
-        <h2>
-            {item.name}
-          </h2>
+          <Header courses={item} />
           <Content courses={item} />
           <TotalExercises courses={item} />
         </div>
