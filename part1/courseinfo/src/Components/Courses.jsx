@@ -6,11 +6,11 @@ const Courses = ({ coursesArray }) => {
   return (
     <div>
       <h1>Web development curriculum</h1>
-      {coursesArray.map(item =>
-        <div key={item.id}>
-          <Header courses={item} />
-          <Content courses={item} />
-          <TotalExercises courses={item} />
+      {coursesArray.map(course =>
+        <div key={course.id}>
+          <Header courses={course} />
+          <Content courses={course} />
+          <TotalExercises courses={course} />
         </div>
       )}
     </div>
